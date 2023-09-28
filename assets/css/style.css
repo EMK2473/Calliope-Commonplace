@@ -1,0 +1,21 @@
+:root {
+   
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  main {
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  body {
+   
+  }
+  
+  header {
+   
+  }
+  
