@@ -1,14 +1,21 @@
-const url = 'https://spotify23.p.rapidapi.com/playlist/?id=0vvXsWCC9xrXsKd4FyS8kM';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'c019a715ebmsh04d655948ca9368p190c26jsnbc9b8dcb7c4f',
-		'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
-	}
-};
-
-fetch(url, options)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.error(error));
+fetch(`https://accounts.spotify.com/api/token?grant_type=client_credentials&client_id=1d1c01d18994468ab2c8b879ff5d1f66&client_secret=12f9fe723b6e465b807089c92072062f`, {
+    method: 'POST',
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+}).then(function(response){
+    return response.json()
+}).then(function(data){
+  return fetch(`https://api.spotify.com/v1/playlists/0vvXsWCC9xrXsKd4FyS8kM`, {
+    method: 'GET',
+    headers: {
+        "Authorization": "Bearer " + data.access_token
+    }
+  })
+    
+}).then(function(response){
+    return response.json()
+}).then(function(data){
+    console.log(data)
+})
 
