@@ -1,21 +1,23 @@
 :root {
-   
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  main {
-    display: flex;
-    flex-grow: 1;
-  }
-  
-  body {
-   
-  }
-  
-  header {
-   
-  }
-  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+body {
+  font-style: monospace;
+  font-size: 200%;
+  background-color: black;
+  color: white;
+}
+
+div{
+    color: green;
+}
+
