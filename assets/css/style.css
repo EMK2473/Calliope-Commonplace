@@ -1,27 +1,24 @@
 :root {
-   
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  main {
-    display: flex;
-    flex-grow: 1;
-  }
-  
-  body {
-   
-  }
-  
-  header {
-   
-  }
-  
-  main .columns{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    margin-left: 50px;
-  }
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+body {
+  font-style: monospace;
+  font-size: 200%;
+  background-color: black;
+  color: white;
+}
+
+div{
+    color: green;
+}
+
