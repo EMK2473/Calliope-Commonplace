@@ -2,8 +2,9 @@ const globalData = {};
 
 // quote function
 function displayQuoteResult(quoteText, author) {
+  // let quoteResult = globalData.quoteText
   let quoteResult = document.getElementById("quoteResult");
-  quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteText}<br><strong>Author:</strong> ${author}`;
+  quoteResult.innerHTML = `<strong>Quote:</strong> ${globalData.quoteText}<br><strong>Author:</strong> ${globalData.author}`;
 }
 let submitCategoryButton = document.getElementById("submitCategory");
 submitCategoryButton.addEventListener("click", function () {
@@ -29,10 +30,11 @@ submitCategoryButton.addEventListener("click", function () {
     .then((result) => {
       let quoteText = result[0].quote;
       let author = result[0].author;
-      displayQuoteResult(quoteText, author);
+      // displayQuoteResult(quoteText, author);
       globalData.quoteText = quoteText;
       globalData.author = author;
-      localStorage.setItem("globalData", JSON.stringify(globalData));
+      displayQuoteResult();
+      // localStorage.setItem("globalData", JSON.stringify(globalData));
 
       console.log(result);
     })
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (inputText.trim() !== "") {
       fetchDefinition(inputText);
       globalData.inputText = inputText;
-      localStorage.setItem("globalData", JSON.stringify(globalData));
+      // localStorage.setItem("globalData", JSON.stringify(globalData));
     } else {
       resultDiv.textContent = "Please enter a word.";
     }
@@ -93,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         resultDiv.appendChild(definitionElement);
         globalData.partOfSpeech = partOfSpeech;
         globalData.definition = definition;
-        localStorage.setItem("globalData", JSON.stringify(globalData));
+        // localStorage.setItem("globalData", JSON.stringify(globalData));
 
         console.log("Data Object:", definitionData);
       });
@@ -110,11 +112,11 @@ function displayAuthor(authorData) {
     <strong>Name:</strong> ${authorData.name}<br>
     <strong>Title:</strong> ${authorData.title}<br>
   `;
-}
-let submitAuthorButton = document.getElementById("authorForm");
+  }
+      let submitAuthorButton = document.getElementById("authorForm");
 
 // event listener for author name submission
-submitAuthorButton.addEventListener("submit", function (event) {
+  submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
 
@@ -139,7 +141,7 @@ submitAuthorButton.addEventListener("submit", function (event) {
         let authorData = result[0];
         displayAuthor(authorData);
         globalData.authorData = authorData.title;
-        localStorage.setItem("globalData", JSON.stringify(globalData));
+        // localStorage.setItem("globalData", JSON.stringify(globalData));
       } else {
         console.log("Author not found");
         authorResult.textContent =
@@ -150,3 +152,8 @@ submitAuthorButton.addEventListener("submit", function (event) {
       console.error("Error:", error);
     });
 });
+
+let saveButtonEl = document.getElementById("saveButton");
+saveButtonEl.addEventListener("click", function(){
+  localStorage.setItem("globalData", JSON.stringify(globalData));
+})
