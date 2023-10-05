@@ -1,19 +1,23 @@
 const globalData = {};
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+let saveButtonEl = document.getElementById("saveButton");
+let submitCategoryButton = document.getElementById("submitCategory");
+let submitAuthorButton = document.getElementById("authorForm");
+
+
 
 // quote function
-function displayQuoteResult(quoteText, author) {
-  // let quoteResult = globalData.quoteText
-  let quoteResult = document.getElementById("quoteResult");
-  quoteResult.innerHTML = `<strong>Quote:</strong> ${globalData.quoteText}<br><strong>Author:</strong> ${globalData.author}`;
-}
-let submitCategoryButton = document.getElementById("submitCategory");
 submitCategoryButton.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
-
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
+
+    function displayQuoteResult() {
+      let quoteResult = document.getElementById("quoteResult");
+      quoteResult.innerHTML = `<strong>Quote:</strong> ${globalData.quoteText}<br><strong>Author:</strong> ${globalData.author}`;
+    }
+
   fetch(apiUrl, {
     method: "GET",
     headers: {
@@ -30,13 +34,9 @@ submitCategoryButton.addEventListener("click", function () {
     .then((result) => {
       let quoteText = result[0].quote;
       let author = result[0].author;
-      // displayQuoteResult(quoteText, author);
       globalData.quoteText = quoteText;
       globalData.author = author;
       displayQuoteResult();
-      // localStorage.setItem("globalData", JSON.stringify(globalData));
-
-      console.log(result);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (inputText.trim() !== "") {
       fetchDefinition(inputText);
       globalData.inputText = inputText;
-      // localStorage.setItem("globalData", JSON.stringify(globalData));
     } else {
       resultDiv.textContent = "Please enter a word.";
     }
@@ -95,8 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
         resultDiv.appendChild(definitionElement);
         globalData.partOfSpeech = partOfSpeech;
         globalData.definition = definition;
-        // localStorage.setItem("globalData", JSON.stringify(globalData));
-
         console.log("Data Object:", definitionData);
       });
     } else {
@@ -105,22 +102,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// author functions
-function displayAuthor(authorData) {
-  let authorResult = document.getElementById("authorResult");
-  authorResult.innerHTML = `
-    <strong>Name:</strong> ${authorData.name}<br>
-    <strong>Title:</strong> ${authorData.title}<br>
-  `;
-  }
-      let submitAuthorButton = document.getElementById("authorForm");
+
+
+      
 
 // event listener for author name submission
   submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
-
   let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
+
+  // author functions
+  function displayAuthor(authorData) {
+    let authorResult = document.getElementById("authorResult");
+    authorResult.innerHTML = `
+      <strong>Name:</strong> ${authorData.name}<br>
+      <strong>Title:</strong> ${authorData.title}<br>
+    `;
+    }
 
   fetch(apiUrl, {
     method: "GET",
@@ -140,7 +139,6 @@ function displayAuthor(authorData) {
         let authorData = result[0];
         displayAuthor(authorData);
         globalData.authorData = authorData.title;
-        // localStorage.setItem("globalData", JSON.stringify(globalData));
       } else {
         console.log("Author not found");
         authorResult.textContent =
@@ -152,7 +150,7 @@ function displayAuthor(authorData) {
     });
 });
 
-let saveButtonEl = document.getElementById("saveButton");
+
 saveButtonEl.addEventListener("click", function(){
   localStorage.setItem("globalData", JSON.stringify(globalData));
 })
