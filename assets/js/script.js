@@ -1,4 +1,5 @@
 const globalData = {};
+let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 
 // quote function
 function displayQuoteResult(quoteText, author) {
@@ -13,7 +14,6 @@ submitCategoryButton.addEventListener("click", function () {
 
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
-  let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
   fetch(apiUrl, {
     method: "GET",
     headers: {
@@ -121,7 +121,6 @@ function displayAuthor(authorData) {
   let authorText = document.getElementById("authorText").value;
 
   let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
-  let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 
   fetch(apiUrl, {
     method: "GET",
