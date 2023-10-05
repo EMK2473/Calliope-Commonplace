@@ -1,3 +1,5 @@
+const globalData = {};
+
 // quote function
 function displayQuoteResult(quoteText, author) {
   let quoteResult = document.getElementById("quoteResult");
@@ -7,7 +9,7 @@ let submitCategoryButton = document.getElementById("submitCategory");
 submitCategoryButton.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
-  // localStorage.setItem("selectedCategory", selectedCategory);
+
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
@@ -28,8 +30,10 @@ submitCategoryButton.addEventListener("click", function () {
       let quoteText = result[0].quote;
       let author = result[0].author;
       displayQuoteResult(quoteText, author);
-      localStorage.setItem("quoteText", quoteText);
-      localStorage.setItem("author", author);
+      globalData.quoteText = quoteText;
+      globalData.author = author;
+      localStorage.setItem("globalData", JSON.stringify(globalData));
+
       console.log(result);
     })
     .catch((error) => {
@@ -47,9 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     let inputText = document.getElementById("inputText").value;
-    // localStorage.setItem("inputText", inputText);
+
     if (inputText.trim() !== "") {
       fetchDefinition(inputText);
+      globalData.inputText = inputText;
+      localStorage.setItem("globalData", JSON.stringify(globalData));
     } else {
       resultDiv.textContent = "Please enter a word.";
     }
@@ -85,8 +91,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let definitionElement = document.createElement("div");
         definitionElement.innerHTML = `<strong>${partOfSpeech}:</strong> ${definition}`;
         resultDiv.appendChild(definitionElement);
-        localStorage.setItem("definition", definition);
-        localStorage.setItem("partOfSpeech", partOfSpeech);
+        globalData.partOfSpeech = partOfSpeech;
+        globalData.definition = definition;
+        localStorage.setItem("globalData", JSON.stringify(globalData));
+
         console.log("Data Object:", definitionData);
       });
     } else {
@@ -109,7 +117,7 @@ let submitAuthorButton = document.getElementById("authorForm");
 submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
-  localStorage.setItem("authorText", authorText);
+
   let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
   let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 
@@ -130,11 +138,8 @@ submitAuthorButton.addEventListener("submit", function (event) {
       if (result.length > 0) {
         let authorData = result[0];
         displayAuthor(authorData);
-        console.log();
-        localStorage.setItem("authorName", authorData.name);
-        localStorage.setItem("authorTitle", authorData.title);
-        console.log(result);
-        console.log(authorData);
+        globalData.authorData = authorData.title;
+        localStorage.setItem("globalData", JSON.stringify(globalData));
       } else {
         console.log("Author not found");
         authorResult.textContent =
