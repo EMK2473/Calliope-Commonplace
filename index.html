@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-14 bg-gradient-to-r from-indigo-700 to-black">
 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
   </head>
   <body>
-    <p>Pick a category and click submit for a random quote.</p>
+    <p class="mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300"> Pick a category and click submit for a random quote.</p>
     <br />
     <label for="categorySelect">Select a Category:</label>
-    <select id="categorySelect" name="categorySelect">
+    <select id="categorySelect" name="categorySelect" class="">
+      
       <option value="age">age</option>
       <option value="alone">alone</option>
       <option value="amazing">amazing</option>
@@ -80,10 +82,10 @@
       <option value="movies">movies</option>
       <option value="success">success</option>
     </select>
-    <button id="submitCategory" type="submit">Submit</button>
+    <button id="submitCategory" type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
     <div id="quoteResult"></div>
     <br />
-    <p>You can look up the author of the quote, too!</p>
+    <p class="mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300">You can look up the author of the quote, too!</p>
     <br />
     <form id="authorForm">
       <label for="authorText">Look up the author:</label>
@@ -92,7 +94,7 @@
     </form>
     <div id="authorResult"></div>
     <br />
-    <p>Use the Dictionary if you want to look up a word.</p>
+    <p class="mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300">Use the Dictionary if you want to look up a word.</p>
     <br />
     <form id="wordForm">
       <label for="inputText">Look up a word:</label>

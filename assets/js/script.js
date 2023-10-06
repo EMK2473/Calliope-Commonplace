@@ -1,5 +1,6 @@
 const globalData = {};
 
+
 // quote function
 function displayQuoteResult(quoteText, author) {
   // let quoteResult = globalData.quoteText
