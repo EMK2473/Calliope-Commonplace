@@ -6,10 +6,9 @@ let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 let authSaveBtn = document.getElementById("authSaveBtn");
 let catSaveBtn = document.getElementById("catSaveBtn");
 let defSaveBtn = document.getElementById("defSaveBtn");
+let wordCategoryButton = document.getElementById("wordForm");
 let submitCategoryButton = document.getElementById("submitCategory");
 let submitAuthorButton = document.getElementById("authorForm");
-
-
 
 // quote function
 submitCategoryButton.addEventListener("click", function () {
@@ -18,10 +17,10 @@ submitCategoryButton.addEventListener("click", function () {
   let apiUrl =
     "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
 
-    function displayQuoteResult() {
-      let quoteResult = document.getElementById("quoteResult");
-      quoteResult.innerHTML = `<strong>Quote:</strong> ${catData.quoteText}<br><strong>Author:</strong> ${catData.author}`;
-    }
+  function displayQuoteResult() {
+    let quoteResult = document.getElementById("quoteResult");
+    quoteResult.innerHTML = `<strong>Quote:</strong> ${catData.quoteText}<br><strong>Author:</strong> ${catData.author}`;
+  }
 
   fetch(apiUrl, {
     method: "GET",
@@ -53,67 +52,10 @@ submitCategoryButton.addEventListener("click", function () {
 
 // word definition function
 
-// document.addEventListener("click", function () {
-//   let form = document.getElementById("wordForm");
-//   let resultDiv = document.getElementById("result");
-//   form.addEventListener("submit", function (event) {
-//     event.preventDefault();
-//     let inputText = document.getElementById("inputText").value;
 
-//     if (inputText.trim() !== "") {
-//       fetchDefinition(inputText);
-//       wordData.inputText = inputText;
-//     } else {
-//       resultDiv.textContent = "Please enter a word.";
-//     }
-//   });
-//   function fetchDefinition(word) {
-//     console.log("Input word:", word);
-//     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
-//       method: "GET",
-//       credentials: "same-origin",
-//       redirect: "follow",
-//     })
-//       .then(function (response) {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then(function (data) {
-//         displayDefinition(data);
-//       })
-//       .catch(function (error) {
-//         console.error("Error fetching definition:", error);
-//         resultDiv.textContent = "Check your spelling.";
-//       });
-//   }
-
-//   function displayDefinition(data) {
-//     resultDiv.innerHTML = "";
-//     if (Array.isArray(data) && data.length > 0) {
-//       data.forEach((definitionData) => {
-//         let partOfSpeech = definitionData.meanings[0].partOfSpeech;
-//         let definition = definitionData.meanings[0].definitions[0].definition;
-//         let definitionElement = document.createElement("div");
-//         definitionElement.innerHTML = `<strong>${partOfSpeech}:</strong> ${definition}`;
-//         resultDiv.appendChild(definitionElement);
-//         wordData.partOfSpeech = partOfSpeech;
-//         wordData.definition = definition;
-//         console.log("Data Object:", definitionData);
-//       });
-//     } else {
-//       resultDiv.textContent = "Definition not found.";
-//     }
-//   }
-// });
-
-
-
-      
 
 // event listener for author name submission
-  submitAuthorButton.addEventListener("submit", function (event) {
+submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
   let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
@@ -125,7 +67,7 @@ submitCategoryButton.addEventListener("click", function () {
       <strong>Name:</strong> ${authorData.name}<br>
       <strong>Title:</strong> ${authorData.title}<br>
     `;
-    }
+  }
 
   fetch(apiUrl, {
     method: "GET",
@@ -157,37 +99,86 @@ submitCategoryButton.addEventListener("click", function () {
 });
 
 
-catSaveBtn.addEventListener("click", function(){
+
+
+
+
+wordCategoryButton.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let wordText = document.getElementById("wordText").value;
+  let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${wordText}`;
+  function displayWord(wordData) {
+    let wordResult = document.getElementById("wordResult");
+    wordResult.innerHTML = `
+    <strong>Part of Speech:</strong> ${wordData.meanings[0].partOfSpeech}<br>
+      <strong>Definition:</strong> ${wordData.meanings[0].definitions[0].definition}<br>
+    `;
+  }
+  fetch(apiUrl, {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network error");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        data.forEach((wordData) => {
+          console.log(wordData)
+          let partOfSpeech = wordData.meanings[0].partOfSpeech;
+          let definition = wordData.meanings[0].definitions[0].definition;
+          displayWord(wordData);
+          wordData.partOfSpeech = partOfSpeech;
+          wordData.definition = definition;
+          console.log(wordData)
+          console.log(partOfSpeech)
+          console.log(definition)
+        });
+      } else {
+        console.log("Word not found");
+        wordResult.textContent = "Check your spelling.";
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
+
+
+
+
+
+
+
+catSaveBtn.addEventListener("click", function () {
   var data = {
     author: catData.author,
-    quoteText: catData.quoteText
+    quoteText: catData.quoteText,
   };
   localStorage.setItem("catData", JSON.stringify(data));
 });
 
-authSaveBtn.addEventListener("click", function(){
+authSaveBtn.addEventListener("click", function () {
   var data = {
     author: authData.authorData,
-    quoteText: authData.author
+    quoteText: authData.author,
   };
   localStorage.setItem("authData", JSON.stringify(data));
 });
 
-defSaveBtn.addEventListener("click", function(){
+defSaveBtn.addEventListener("click", function () {
   var data = {
     author: wordData.partOfSpeech,
-    quoteText: wordData.definition
+    quoteText: wordData.definition,
   };
   localStorage.setItem("wordData", JSON.stringify(data));
 });
 
 
-
-
-
-// authSaveBtn.addEventListener("click", function(){
-//   localStorage.setItem("globalData", JSON.stringify(globalData.authorData, globalData.author));
-// })
-// defSaveBtn.addEventListener("click", function(){
-//   localStorage.setItem("globalData", JSON.stringify(globalData.partOfSpeech, globalData.definition));
-// })
