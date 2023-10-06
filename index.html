@@ -80,26 +80,32 @@
       <option value="success">success</option>
     </select>
     <button id="submitCategory" type="submit">Submit</button>
+    <button id="saveButton">Save</button>
     <div id="quoteResult"></div>
     <br />
     <p>You can look up the author of the quote, too!</p>
     <br />
+    <div id="quoteSaved"></div>
     <form id="authorForm">
       <label for="authorText">Look up the author:</label>
       <input type="text" id="authorText" name="inputText" />
       <input type="submit" value="Submit" />
     </form>
-    <div id="authorResult"></div>
+    <!-- <button id="saveButton">Save</button> -->
+    <div id="authorSaved"></div>
     <br />
     <p>Use the Dictionary if you want to look up a word.</p>
     <br />
+    <div id="wordCategory"></div>
     <form id="wordForm">
       <label for="inputText">Look up a word:</label>
       <input type="text" id="inputText" name="inputText" />
       <input type="submit" value="Submit" />
+     
     </form>
     <div id="result"></div>
-    <button id="saveButton">Save</button>
+    <div id="wordSaved"></div>
+   
     <br />
     <script src="./assets/js/script.js"></script>
   </body>
