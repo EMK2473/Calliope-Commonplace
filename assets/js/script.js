@@ -1,8 +1,7 @@
-const quoteData = {}; //catData = "quoteData"
+const quoteData = {};
 const wordData = {};
 const authData = {};
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
-// let saveButtonEl = document.getElementById("saveButton");
 let authSaveBtn = document.getElementById("authSaveBtn");
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
 let wordSaveBtn = document.getElementById("wordSaveBtn");
@@ -10,14 +9,6 @@ let wordCategoryButton = document.getElementById("wordForm");
 let quoteBtn = document.getElementById("quoteCategory");
 let submitAuthorButton = document.getElementById("authorForm");
 
-
-
-
-
-
-
-
-// quote function
 
 quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
@@ -55,21 +46,10 @@ quoteBtn.addEventListener("click", function () {
     });
 });
 
-// DOMContentLoaded fires once the HTML doc has been COMPLETELY parsed; does not wait for asnycs.
-// "load" is only used to detect a fully loaded-page;
-
-// word definition function
-
-
-
-// event listener for author name submission
-
 submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
   let apiUrl = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
-
-  // author functions
 
   function displayAuthor(authorData) {
     let authorResult = document.getElementById("authorResult");
@@ -107,8 +87,6 @@ submitAuthorButton.addEventListener("submit", function (event) {
       console.error("Error:", error);
     });
 });
-
-
 
 wordCategoryButton.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -165,16 +143,16 @@ quoteSaveBtn.addEventListener("click", function () {
 
 authSaveBtn.addEventListener("click", function () {
   var data = {
-    author: authData.authorData,
-    quoteText: authData.author,
+    title: authData.authorData,
+    quoteText: authData.author, // get this to display author name
   };
   localStorage.setItem("authData", JSON.stringify(data));
 });
 
 wordSaveBtn.addEventListener("click", function () {
   var data = {
-    author: wordData.partOfSpeech,
-    quoteText: wordData.definition,
+    partofSpeech: wordData.partOfSpeech,
+    definition: wordData.definition,
   };
   localStorage.setItem("wordData", JSON.stringify(data));
 });
