@@ -23,7 +23,7 @@ quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
   let apiUrl =
-    "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
+    `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/quotes?category=` + selectedCategory;
 
   function displayQuoteResult() {
     let quoteResult = document.getElementById("quoteResult");
@@ -67,7 +67,7 @@ quoteBtn.addEventListener("click", function () {
 submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
-  let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
+  let apiUrl = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
 
   // author functions
 
