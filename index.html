@@ -9,6 +9,7 @@
     <title>Document</title>
   </head>
   <body class="bg-fixed bg-cover" style="background-image: url(./assets/images/Home-screen.jpg)">
+    <!-- changed p to div to contain the stylization, applies to other prior p* labels -->
     <div class="my-8 mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300"> 
       <h1>Pick a category and click submit for a random quote.</h1>
       <form class="my-8">
@@ -84,30 +85,38 @@
           <option value="success">success</option>
         </select>
         <button id="submitCategory" type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
-        
       </form>
-      <div id="quoteResult">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, ullam.
-      </div>
-      <hr class="my-8" />
+      <div id="quoteResult"></div>
+      <!-- added saveButton to container. Have not done anything to the functioning.  -->
+      <button id="saveButton"> Save </button>
+    </div>
+    <!-- div was p* -->
+    <div class="my-8 mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300">
       <h1>You can look up the author of the quote, too!</h1>
       <form id="authorForm">
         <label for="authorText">Look up the author:</label>
         <input type="text" id="authorText" name="inputText" class="text-black"/>
+        <!-- changed input to button for congruency* -->
         <button type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
       </form>
       <div id="authorResult"></div>
-      <hr class="my-8" />
+      <!-- added saveButton to container. Have not done anything to the functioning -->
+      <button id="saveButton"> Save </button>
+    </div>
+    <!--div was p* -->
+    <div class="my-8 mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300">
       <h1>Use the Dictionary if you want to look up a word.</h1>
       <form id="wordForm">
         <label for="inputText">Look up a word:</label>
         <input type="text" id="inputText" name="inputText" class="text-black"/>
+        <!-- congruency* -->
         <button type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
+        <!-- added saveButton to container. Have not done anything to the functioning -->
+        <button id="saveButton"> Save </button>
       </form>
       <div id="result"></div>
     </div>
     <!-- Add individual save buttons to different requests -->
-    <button id="saveButton"> Save </button>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
