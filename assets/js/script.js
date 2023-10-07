@@ -1,33 +1,27 @@
-const quoteData = {}; //catData = "quoteData"
+const quoteObjectData = {};
 const wordData = {};
-const authData = {};
+const authorObjectData = {};
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
-// let saveButtonEl = document.getElementById("saveButton");
-let authSaveBtn = document.getElementById("authSaveBtn");
+let authorSaveBtn = document.getElementById("authorSaveBtn");
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
 let wordSaveBtn = document.getElementById("wordSaveBtn");
 let wordCategoryButton = document.getElementById("wordForm");
 let quoteBtn = document.getElementById("quoteCategory");
 let submitAuthorButton = document.getElementById("authorForm");
 
-
-
-
-
-
-
-
 // quote function
 
 quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
+
   let apiUrl =
-    `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/quotes?category=` + selectedCategory;
+    "https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/quotes?category=" +
+    selectedCategory;
 
   function displayQuoteResult() {
     let quoteResult = document.getElementById("quoteResult");
-    quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteData.quoteText}<br><strong>Author:</strong> ${quoteData.author}`;
+    quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteObjectData.quoteText}<br><strong>Author:</strong> ${quoteObjectData.author}`;
   }
 
   fetch(apiUrl, {
@@ -46,8 +40,8 @@ quoteBtn.addEventListener("click", function () {
     .then((result) => {
       let quoteText = result[0].quote;
       let author = result[0].author;
-      quoteData.quoteText = quoteText;
-      quoteData.author = author;
+      quoteObjectData.quoteText = quoteText;
+      quoteObjectData.author = author;
       displayQuoteResult();
     })
     .catch((error) => {
@@ -55,21 +49,10 @@ quoteBtn.addEventListener("click", function () {
     });
 });
 
-// DOMContentLoaded fires once the HTML doc has been COMPLETELY parsed; does not wait for asnycs.
-// "load" is only used to detect a fully loaded-page;
-
-// word definition function
-
-
-
-// event listener for author name submission
-
 submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
-  let apiUrl = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
-
-  // author functions
+  let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
 
   function displayAuthor(authorData) {
     let authorResult = document.getElementById("authorResult");
@@ -94,9 +77,11 @@ submitAuthorButton.addEventListener("submit", function (event) {
     })
     .then((result) => {
       if (result.length > 0) {
+        console.log(result[0]);
         let authorData = result[0];
         displayAuthor(authorData);
-        authData.authorData = authorData.title;
+        authorObjectData.name = authorData.name;
+        authorObjectData.title = authorData.title;
       } else {
         console.log("Author not found");
         authorResult.textContent =
@@ -107,8 +92,6 @@ submitAuthorButton.addEventListener("submit", function (event) {
       console.error("Error:", error);
     });
 });
-
-
 
 wordCategoryButton.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -153,30 +136,45 @@ wordCategoryButton.addEventListener("submit", function (event) {
     });
 });
 
-
+function renderSavedWord() {
+  var savedWord = localStorage.getItem("wordData");
+  document.getElementById("wordSaved").textContent = savedWord;
+}
+function renderSavedQuote() {
+  var savedQuote = localStorage.getItem("quoteData");
+  document.getElementById("quoteSaved").textContent = savedQuote;
+}
+function renderSavedAuthor() {
+  var savedAuthor = localStorage.getItem("authorData");
+  document.getElementById("authorSaved").textContent = savedAuthor;
+}
 
 quoteSaveBtn.addEventListener("click", function () {
   var data = {
-    author: quoteData.author,
-    quoteText: quoteData.quoteText,
+    author: quoteObjectData.author,
+    quoteText: quoteObjectData.quoteText,
   };
   localStorage.setItem("quoteData", JSON.stringify(data));
+  renderSavedQuote();
 });
 
-authSaveBtn.addEventListener("click", function () {
+authorSaveBtn.addEventListener("click", function () {
   var data = {
-    author: authData.authorData,
-    quoteText: authData.author,
+    author: authorObjectData.name,
+    discription: authorObjectData.title,
   };
-  localStorage.setItem("authData", JSON.stringify(data));
+  localStorage.setItem("authorData", JSON.stringify(data));
+  renderSavedAuthor();
 });
 
 wordSaveBtn.addEventListener("click", function () {
   var data = {
-    author: wordData.partOfSpeech,
-    quoteText: wordData.definition,
+    partOfSpeech: wordData.partOfSpeech,
+    definition: wordData.definition,
   };
   localStorage.setItem("wordData", JSON.stringify(data));
+  renderSavedWord();
 });
-
-
+renderSavedWord();
+renderSavedQuote();
+renderSavedAuthor();
