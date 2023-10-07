@@ -1,15 +1,20 @@
+
 const quoteObjectData = {};
+
 const wordData = {};
 const authorObjectData = {};
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+
 let authorSaveBtn = document.getElementById("authorSaveBtn");
+
+
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
 let wordSaveBtn = document.getElementById("wordSaveBtn");
 let wordCategoryButton = document.getElementById("wordForm");
 let quoteBtn = document.getElementById("quoteCategory");
 let submitAuthorButton = document.getElementById("authorForm");
 
-// quote function
+
 
 quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
@@ -52,7 +57,8 @@ quoteBtn.addEventListener("click", function () {
 submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
-  let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
+  let apiUrl = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
+
 
   function displayAuthor(authorData) {
     let authorResult = document.getElementById("authorResult");
@@ -162,6 +168,7 @@ authorSaveBtn.addEventListener("click", function () {
   var data = {
     author: authorObjectData.name,
     discription: authorObjectData.title,
+
   };
   localStorage.setItem("authorData", JSON.stringify(data));
   renderSavedAuthor();
