@@ -155,7 +155,7 @@ wordCategoryButton.addEventListener("submit", function (event) {
       return response.json();
     })
     .then((data) => {
-      if (Array.isArray(data) && data.length > 0) {
+      if (data.length > 0) {
         data.forEach((wordObjectData) => {
           displayWord(wordObjectData);
         });
