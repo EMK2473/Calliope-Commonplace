@@ -127,12 +127,12 @@ wordCategoryButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let wordText = document.getElementById("wordText").value;
   let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${wordText}`;
+
   function displayWord(data) {
     let partOfSpeech = data.meanings[0].partOfSpeech;
     let definition = data.meanings[0].definitions[0].definition;
-    let word = data.word
-    
-    wordObjectData.word = word
+    let word = data.word;
+    wordObjectData.word = word;
     wordObjectData.partOfSpeech = partOfSpeech;
     wordObjectData.definition = definition;
     let wordResult = document.getElementById("wordResult");
@@ -169,16 +169,10 @@ wordCategoryButton.addEventListener("submit", function (event) {
     });
 });
 
-function renderSavedWord() {
-  var savedWord = JSON.parse(localStorage.getItem("wordObjectData"));
-  console.log(savedWord)
-  var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " + savedWord.partOfSpeech + " " + "<br><strong>Definition: </strong> " + savedWord.definition
-  document.getElementById("wordSaved").innerHTML = display;
-}
 
 function renderSavedQuote() {
   var savedQuote = JSON.parse(localStorage.getItem("quoteData"))
-  var display = "<strong>Quote:</strong> " + savedQuote.quoteText + " " + "<br><strong>Author:</strong> " + savedQuote.author
+  var display = "<strong>Quote:</strong> " + savedQuote.quoteText + " " + "<br><strong>Author:</strong> " + savedQuote.author;
 
   document.getElementById("quoteSaved").innerHTML = display;
 }
@@ -186,7 +180,14 @@ function renderSavedQuote() {
 function renderSavedAuthor() {
   var savedAuthor = JSON.parse(localStorage.getItem("authorData"));
   var display = "<strong>Name: </strong> " + savedAuthor.author + " " + "<br><strong>Title: </strong> " + savedAuthor.description
-  document.getElementById("authorSaved").innerHTML = display;
+  document.getElementById("authorSaved").innerHTML = display;;
+}
+
+function renderSavedWord() {
+  var savedWord = JSON.parse(localStorage.getItem("wordObjectData"));
+  console.log(savedWord)
+  var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " + savedWord.partOfSpeech + " " + "<br><strong>Definition: </strong> " + savedWord.definition;
+  document.getElementById("wordSaved").innerHTML = display;
 }
 
 quoteSaveBtn.addEventListener("click", function () {
@@ -214,7 +215,7 @@ wordSaveBtn.addEventListener("click", function () {
     definition: wordObjectData.definition,
     word: wordObjectData.word
   };
-  localStorage.setItem("wordData", JSON.stringify(data));
+  localStorage.setItem("wordObjectData", JSON.stringify(data));
   renderSavedWord();
 });
 
