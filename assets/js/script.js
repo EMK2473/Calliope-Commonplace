@@ -191,7 +191,7 @@ quoteSaveBtn.addEventListener("click", function () {
 authorSaveBtn.addEventListener("click", function () {
   var data = {
     author: authorObjectData.name,
-    discription: authorObjectData.title,
+    description: authorObjectData.title,
 
   };
   localStorage.setItem("authorData", JSON.stringify(data));
