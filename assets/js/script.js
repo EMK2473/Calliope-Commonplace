@@ -1,6 +1,7 @@
 const quoteObjectData = {};
 const wordData = {};
 const authorObjectData = {};
+console.log(wordData)
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 let authorSaveBtn = document.getElementById("authorSaveBtn");
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
@@ -126,10 +127,12 @@ wordCategoryButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let wordText = document.getElementById("wordText").value;
   let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${wordText}`;
-
   function displayWord(data) {
     let partOfSpeech = data.meanings[0].partOfSpeech;
     let definition = data.meanings[0].definitions[0].definition;
+    let word = data.word
+    
+    wordData.word = word
     wordData.partOfSpeech = partOfSpeech;
     wordData.definition = definition;
     let wordResult = document.getElementById("wordResult");
@@ -167,16 +170,24 @@ wordCategoryButton.addEventListener("submit", function (event) {
 });
 
 function renderSavedWord() {
-  var savedWord = localStorage.getItem("wordData");
-  document.getElementById("wordSaved").textContent = savedWord;
+  var savedWord = JSON.parse(localStorage.getItem("wordData"));
+  console.log(savedWord)
+  var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " +savedWord.definition + " " + "<br><strong>Definition: </strong> " + savedWord.partOfSpeech
+  document.getElementById("wordSaved").innerHTML = display;
 }
+
 function renderSavedQuote() {
-  var savedQuote = localStorage.getItem("quoteData");
-  document.getElementById("quoteSaved").textContent = savedQuote;
+  var savedQuote = JSON.parse(localStorage.getItem("quoteData"))
+  var display = "<strong>Author:</strong> " + savedQuote.author + " " + "<br><strong>Quote:</strong> " + savedQuote.quoteText
+
+  document.getElementById("quoteSaved").innerHTML = display;
 }
+
+
 function renderSavedAuthor() {
-  var savedAuthor = localStorage.getItem("authorData");
-  document.getElementById("authorSaved").textContent = savedAuthor;
+  var savedAuthor = JSON.parse(localStorage.getItem("authorData"));
+  var display = "<strong>Author Name: </strong> " + savedAuthor.author + " " + "<br><strong>Title: </strong> " + savedAuthor.description
+  document.getElementById("authorSaved").innerHTML = display;
 }
 
 quoteSaveBtn.addEventListener("click", function () {
@@ -202,6 +213,7 @@ wordSaveBtn.addEventListener("click", function () {
   var data = {
     partOfSpeech: wordData.partOfSpeech,
     definition: wordData.definition,
+    word: wordData.word
   };
   localStorage.setItem("wordData", JSON.stringify(data));
   renderSavedWord();
