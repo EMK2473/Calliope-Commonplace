@@ -1,7 +1,7 @@
 const quoteObjectData = {};
-const wordData = {};
+const wordObjectData = {};
 const authorObjectData = {};
-console.log(wordData)
+console.log(wordObjectData)
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 let authorSaveBtn = document.getElementById("authorSaveBtn");
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
@@ -132,9 +132,9 @@ wordCategoryButton.addEventListener("submit", function (event) {
     let definition = data.meanings[0].definitions[0].definition;
     let word = data.word
     
-    wordData.word = word
-    wordData.partOfSpeech = partOfSpeech;
-    wordData.definition = definition;
+    wordObjectData.word = word
+    wordObjectData.partOfSpeech = partOfSpeech;
+    wordObjectData.definition = definition;
     let wordResult = document.getElementById("wordResult");
     wordResult.innerHTML = `
       <strong>Part of Speech:</strong> ${partOfSpeech}<br>
@@ -156,8 +156,8 @@ wordCategoryButton.addEventListener("submit", function (event) {
     })
     .then((data) => {
       if (Array.isArray(data) && data.length > 0) {
-        data.forEach((wordData) => {
-          displayWord(wordData);
+        data.forEach((wordObjectData) => {
+          displayWord(wordObjectData);
         });
       } else {
         console.log("Word not found");
@@ -170,23 +170,22 @@ wordCategoryButton.addEventListener("submit", function (event) {
 });
 
 function renderSavedWord() {
-  var savedWord = JSON.parse(localStorage.getItem("wordData"));
+  var savedWord = JSON.parse(localStorage.getItem("wordObjectData"));
   console.log(savedWord)
-  var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " +savedWord.definition + " " + "<br><strong>Definition: </strong> " + savedWord.partOfSpeech
+  var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " + savedWord.partOfSpeech + " " + "<br><strong>Definition: </strong> " + savedWord.definition
   document.getElementById("wordSaved").innerHTML = display;
 }
 
 function renderSavedQuote() {
   var savedQuote = JSON.parse(localStorage.getItem("quoteData"))
-  var display = "<strong>Author:</strong> " + savedQuote.author + " " + "<br><strong>Quote:</strong> " + savedQuote.quoteText
+  var display = "<strong>Quote:</strong> " + savedQuote.quoteText + " " + "<br><strong>Author:</strong> " + savedQuote.author
 
   document.getElementById("quoteSaved").innerHTML = display;
 }
 
-
 function renderSavedAuthor() {
   var savedAuthor = JSON.parse(localStorage.getItem("authorData"));
-  var display = "<strong>Author Name: </strong> " + savedAuthor.author + " " + "<br><strong>Title: </strong> " + savedAuthor.description
+  var display = "<strong>Name: </strong> " + savedAuthor.author + " " + "<br><strong>Title: </strong> " + savedAuthor.description
   document.getElementById("authorSaved").innerHTML = display;
 }
 
@@ -211,13 +210,14 @@ authorSaveBtn.addEventListener("click", function () {
 
 wordSaveBtn.addEventListener("click", function () {
   var data = {
-    partOfSpeech: wordData.partOfSpeech,
-    definition: wordData.definition,
-    word: wordData.word
+    partOfSpeech: wordObjectData.partOfSpeech,
+    definition: wordObjectData.definition,
+    word: wordObjectData.word
   };
   localStorage.setItem("wordData", JSON.stringify(data));
   renderSavedWord();
 });
+
 renderSavedWord();
 renderSavedQuote();
 renderSavedAuthor();
