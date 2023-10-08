@@ -1,24 +1,48 @@
 const quoteObjectData = {};
-
 const wordData = {};
 const authorObjectData = {};
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
-
 let authorSaveBtn = document.getElementById("authorSaveBtn");
-
-
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
 let wordSaveBtn = document.getElementById("wordSaveBtn");
 let wordCategoryButton = document.getElementById("wordForm");
 let quoteBtn = document.getElementById("quoteCategory");
 let submitAuthorButton = document.getElementById("authorForm");
 
+// ToDo[0]:
+// Confirm Monday Night Group Session, and/or Tuesday Night Group Session
+
+// ToDo[1]:
+// change event listeners: submit to click, or vice versa 
+// add prevent default
+// check displayWord conditional considering forEach array method
+
+// ToDo[2]:
+// consider putting render functions inside each event listener/ displayQuote functions
+// if localStorage = null, then render
+// else render upon save button
+
+// ToDo[3]:
+// resolve tailwind install issue
+// decide on creating render container in JavaScript or HTML
+// If JavaScript, then createElement, append, appendChild methods
+// If !JavaScript, then create render container element in HTML
+
+// ToDo[4]:
+// consider adding wordObjectData? Is it needed?
+
+// ToDo[5]: 
+// Test for MVP
+
+// ToDo[6]:
+// Prepare for presentation
+// Check all submission criteria is complete and organized
 
 
-quoteBtn.addEventListener("click", function () 
+
+quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
-
   let apiUrl =
     "https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/quotes?category=" +
     selectedCategory;
@@ -102,6 +126,7 @@ wordCategoryButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let wordText = document.getElementById("wordText").value;
   let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${wordText}`;
+
   function displayWord(data) {
     let partOfSpeech = data.meanings[0].partOfSpeech;
     let definition = data.meanings[0].definitions[0].definition;
