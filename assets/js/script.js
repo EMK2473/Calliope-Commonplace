@@ -1,4 +1,3 @@
-
 const quoteObjectData = {};
 
 const wordData = {};
@@ -16,7 +15,7 @@ let submitAuthorButton = document.getElementById("authorForm");
 
 
 
-quoteBtn.addEventListener("click", function () {
+quoteBtn.addEventListener("click", function () 
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
 
