@@ -1,20 +1,33 @@
-const globalData = {};
+const quoteObjectData = {};
+
+const wordData = {};
+const authorObjectData = {};
+let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+
+let authorSaveBtn = document.getElementById("authorSaveBtn");
 
 
-// quote function
-function displayQuoteResult(quoteText, author) {
-  // let quoteResult = globalData.quoteText
-  let quoteResult = document.getElementById("quoteResult");
-  quoteResult.innerHTML = `<strong>Quote:</strong> ${globalData.quoteText}<br><strong>Author:</strong> ${globalData.author}`;
-}
-let submitCategoryButton = document.getElementById("submitCategory");
-submitCategoryButton.addEventListener("click", function () {
+let quoteSaveBtn = document.getElementById("quoteSaveBtn");
+let wordSaveBtn = document.getElementById("wordSaveBtn");
+let wordCategoryButton = document.getElementById("wordForm");
+let quoteBtn = document.getElementById("quoteCategory");
+let submitAuthorButton = document.getElementById("authorForm");
+
+
+
+quoteBtn.addEventListener("click", function () 
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
 
   let apiUrl =
-    "https://api.api-ninjas.com/v1/quotes?category=" + selectedCategory;
-  let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+    "https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/quotes?category=" +
+    selectedCategory;
+
+  function displayQuoteResult() {
+    let quoteResult = document.getElementById("quoteResult");
+    quoteResult.innerHTML = `<strong>Quote:</strong> ${quoteObjectData.quoteText}<br><strong>Author:</strong> ${quoteObjectData.author}`;
+  }
+
   fetch(apiUrl, {
     method: "GET",
     headers: {
@@ -31,98 +44,28 @@ submitCategoryButton.addEventListener("click", function () {
     .then((result) => {
       let quoteText = result[0].quote;
       let author = result[0].author;
-      // displayQuoteResult(quoteText, author);
-      globalData.quoteText = quoteText;
-      globalData.author = author;
+      quoteObjectData.quoteText = quoteText;
+      quoteObjectData.author = author;
       displayQuoteResult();
-      // localStorage.setItem("globalData", JSON.stringify(globalData));
-
-      console.log(result);
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 });
 
-// DOMContentLoaded fires once the HTML doc has been COMPLETELY parsed; does not wait for asnycs.
-// "load" is only used to detect a fully loaded-page;
-
-// word definition function
-document.addEventListener("DOMContentLoaded", function () {
-  let form = document.getElementById("wordForm");
-  let resultDiv = document.getElementById("result");
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    let inputText = document.getElementById("inputText").value;
-
-    if (inputText.trim() !== "") {
-      fetchDefinition(inputText);
-      globalData.inputText = inputText;
-      // localStorage.setItem("globalData", JSON.stringify(globalData));
-    } else {
-      resultDiv.textContent = "Please enter a word.";
-    }
-  });
-  function fetchDefinition(word) {
-    console.log("Input word:", word);
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {
-      method: "GET",
-      credentials: "same-origin",
-      redirect: "follow",
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        displayDefinition(data);
-      })
-      .catch(function (error) {
-        console.error("Error fetching definition:", error);
-        resultDiv.textContent = "Check your spelling.";
-      });
-  }
-
-  function displayDefinition(data) {
-    resultDiv.innerHTML = "";
-    if (Array.isArray(data) && data.length > 0) {
-      data.forEach((definitionData) => {
-        let partOfSpeech = definitionData.meanings[0].partOfSpeech;
-        let definition = definitionData.meanings[0].definitions[0].definition;
-        let definitionElement = document.createElement("div");
-        definitionElement.innerHTML = `<strong>${partOfSpeech}:</strong> ${definition}`;
-        resultDiv.appendChild(definitionElement);
-        globalData.partOfSpeech = partOfSpeech;
-        globalData.definition = definition;
-        // localStorage.setItem("globalData", JSON.stringify(globalData));
-
-        console.log("Data Object:", definitionData);
-      });
-    } else {
-      resultDiv.textContent = "Definition not found.";
-    }
-  }
-});
-
-// author functions
-function displayAuthor(authorData) {
-  let authorResult = document.getElementById("authorResult");
-  authorResult.innerHTML = `
-    <strong>Name:</strong> ${authorData.name}<br>
-    <strong>Title:</strong> ${authorData.title}<br>
-  `;
-  }
-      let submitAuthorButton = document.getElementById("authorForm");
-
-// event listener for author name submission
-  submitAuthorButton.addEventListener("submit", function (event) {
+submitAuthorButton.addEventListener("submit", function (event) {
   event.preventDefault();
   let authorText = document.getElementById("authorText").value;
+  let apiUrl = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
 
-  let apiUrl = `https://api.api-ninjas.com/v1/historicalfigures?name=${authorText}`;
-  let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
+
+  function displayAuthor(authorData) {
+    let authorResult = document.getElementById("authorResult");
+    authorResult.innerHTML = `
+      <strong>Name:</strong> ${authorData.name}<br>
+      <strong>Title:</strong> ${authorData.title}<br>
+    `;
+  }
 
   fetch(apiUrl, {
     method: "GET",
@@ -139,10 +82,11 @@ function displayAuthor(authorData) {
     })
     .then((result) => {
       if (result.length > 0) {
+        console.log(result[0]);
         let authorData = result[0];
         displayAuthor(authorData);
-        globalData.authorData = authorData.title;
-        // localStorage.setItem("globalData", JSON.stringify(globalData));
+        authorObjectData.name = authorData.name;
+        authorObjectData.title = authorData.title;
       } else {
         console.log("Author not found");
         authorResult.textContent =
@@ -154,7 +98,89 @@ function displayAuthor(authorData) {
     });
 });
 
-let saveButtonEl = document.getElementById("saveButton");
-saveButtonEl.addEventListener("click", function(){
-  localStorage.setItem("globalData", JSON.stringify(globalData));
-})
+wordCategoryButton.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let wordText = document.getElementById("wordText").value;
+  let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${wordText}`;
+  function displayWord(data) {
+    let partOfSpeech = data.meanings[0].partOfSpeech;
+    let definition = data.meanings[0].definitions[0].definition;
+    wordData.partOfSpeech = partOfSpeech;
+    wordData.definition = definition;
+    let wordResult = document.getElementById("wordResult");
+    wordResult.innerHTML = `
+      <strong>Part of Speech:</strong> ${partOfSpeech}<br>
+      <strong>Definition:</strong> ${definition}<br>
+    `;
+  }
+  fetch(apiUrl, {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network error");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        data.forEach((wordData) => {
+          displayWord(wordData);
+        });
+      } else {
+        console.log("Word not found");
+        wordResult.textContent = "Check your spelling.";
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
+function renderSavedWord() {
+  var savedWord = localStorage.getItem("wordData");
+  document.getElementById("wordSaved").textContent = savedWord;
+}
+function renderSavedQuote() {
+  var savedQuote = localStorage.getItem("quoteData");
+  document.getElementById("quoteSaved").textContent = savedQuote;
+}
+function renderSavedAuthor() {
+  var savedAuthor = localStorage.getItem("authorData");
+  document.getElementById("authorSaved").textContent = savedAuthor;
+}
+
+quoteSaveBtn.addEventListener("click", function () {
+  var data = {
+    author: quoteObjectData.author,
+    quoteText: quoteObjectData.quoteText,
+  };
+  localStorage.setItem("quoteData", JSON.stringify(data));
+  renderSavedQuote();
+});
+
+authorSaveBtn.addEventListener("click", function () {
+  var data = {
+    author: authorObjectData.name,
+    discription: authorObjectData.title,
+
+  };
+  localStorage.setItem("authorData", JSON.stringify(data));
+  renderSavedAuthor();
+});
+
+wordSaveBtn.addEventListener("click", function () {
+  var data = {
+    partOfSpeech: wordData.partOfSpeech,
+    definition: wordData.definition,
+  };
+  localStorage.setItem("wordData", JSON.stringify(data));
+  renderSavedWord();
+});
+renderSavedWord();
+renderSavedQuote();
+renderSavedAuthor();

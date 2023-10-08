@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -84,28 +83,32 @@
           <option value="movies">movies</option>
           <option value="success">success</option>
         </select>
-        <button id="submitCategory" type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
-      </form>
-      <div id="quoteResult"></div>
+    <button id="quoteCategory" type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
+    <button id="quoteSaveBtn">Save</button>
+        </form>
+    <button id="quoteSaveBtn">Save</button>
+    <div id="quoteResult"></div>
+    <div id="quoteSaved"></div>
       <!-- added saveButton to container. Have not done anything to the functioning.  -->
       <button id="saveButton"> Save </button>
     </div>
     <!-- div was p* -->
     <div class="my-8 mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300">
       <h1>You can look up the author of the quote, too!</h1>
+         <div id="quoteSaved"></div>
       <form id="authorForm">
         <label for="authorText">Look up the author:</label>
         <input type="text" id="authorText" name="inputText" class="text-black"/>
-        <!-- changed input to button for congruency* -->
         <button type="submit" class="outline outline-offset-1 outline-2 rounded-sm bg-white">Submit</button>
-      </form>
+     </form>
+      <button id="authorSaveBtn">Save</button>
       <div id="authorResult"></div>
-      <!-- added saveButton to container. Have not done anything to the functioning -->
-      <button id="saveButton"> Save </button>
+      <div id="authorSaved"></div>
     </div>
     <!--div was p* -->
     <div class="my-8 mx-24 p-2 bg-blue-900 text-center rounded-md font-serif text-blue-300 border-2 border-blue-300">
       <h1>Use the Dictionary if you want to look up a word.</h1>
+      <div id="wordCategory"></div>
       <form id="wordForm">
         <label for="inputText">Look up a word:</label>
         <input type="text" id="inputText" name="inputText" class="text-black"/>
@@ -114,10 +117,12 @@
         <!-- added saveButton to container. Have not done anything to the functioning -->
         <button id="saveButton"> Save </button>
       </form>
-      <div id="result"></div>
+          <button id="wordSaveBtn">Save</button>
+       <div id="wordResult"></div>
+       <div id="wordSaved"></div>
+    
     </div>
     <!-- Add individual save buttons to different requests -->
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
-
