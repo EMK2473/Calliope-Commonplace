@@ -3,42 +3,43 @@
 
 }
 .hero-image {
-  background-image: url("/assets/images/Home-screen.jpg");
-  background-color: #b72424;
-  height: 1000px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+  background: linear-gradient(0.25turn, rgb(22,15,88), purple, #ED8DDC);
 }
 
+.notification{
+  width: 75%;
+  box-shadow: 5px 5px 15px ;
+}
+
+.button{
+  box-shadow: 5px 5px 10px black;
+}
+
+.button:hover{
+  transform: scale(1.05);
+}
 P {
   font-size: larger;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: var(--Blue);
 }
 
-/* 
-:root {
-
+header, body, .hero-image, .notification{
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+#wordSubmitBtn:hover, #authorSubmitBtn:hover, #quoteCategory:hover{
+  box-shadow: 5px 5px 10px #2846FF;
+}
+#wordSaveBtn:hover, #authorSaveBtn:hover, #quoteSaveBtn:hover{
+  box-shadow: 5px 5px 10px #D76FC9;
+}
+#wordSubmitBtn, #authorSubmitBtn, #quoteCategory{
+  background-color: #3E0C65;
+}
+#wordSaveBtn, #authorSaveBtn, #quoteSaveBtn{
+  background-color: #3496F5;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-main {
-  display: flex;
-  flex-grow: 1;
-}
-
-body {
-  font-style: monospace;
-  font-size: 200%;
-  background-color: black;
-  color: white;
-}
-
-div{
-    color: green;
-} */
