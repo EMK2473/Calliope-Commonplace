@@ -10,6 +10,37 @@ let wordCategoryButton = document.getElementById("wordForm");
 let quoteBtn = document.getElementById("quoteCategory");
 let submitAuthorButton = document.getElementById("authorForm");
 
+// ToDo[0]:
+// Confirm Monday Night Group Session, and/or Tuesday Night Group Session
+
+// ToDo[1]:
+// change event listeners: submit to click, or vice versa 
+// add prevent default
+// check displayWord conditional considering forEach array method
+
+// ToDo[2]:
+// consider putting render functions inside each event listener/ displayQuote functions
+// if localStorage = null, then render
+// else render upon save button
+
+// ToDo[3]:
+// resolve tailwind install issue
+// decide on creating render container in JavaScript or HTML
+// If JavaScript, then createElement, append, appendChild methods
+// If !JavaScript, then create render container element in HTML
+
+// ToDo[4]:
+// consider adding wordObjectData? Is it needed?
+
+// ToDo[5]: 
+// Test for MVP
+
+// ToDo[6]:
+// Prepare for presentation
+// Check all submission criteria is complete and organized
+
+
+
 quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
   let selectedCategory = categorySelect.value;
@@ -138,35 +169,18 @@ wordCategoryButton.addEventListener("submit", function (event) {
     });
 });
 
+
 function renderSavedQuote() {
   var savedQuote = JSON.parse(localStorage.getItem("quoteData"))
   var display = "<strong>Quote:</strong> " + savedQuote.quoteText + " " + "<br><strong>Author:</strong> " + savedQuote.author;
 
   document.getElementById("quoteSaved").innerHTML = display;
-
-  quoteSaveBtn.addEventListener("click", function () {
-    var data = {
-      author: quoteObjectData.author,
-      quoteText: quoteObjectData.quoteText,
-    };
-    localStorage.setItem("quoteData", JSON.stringify(data));
-    renderSavedQuote();
-  });
 }
 
 function renderSavedAuthor() {
   var savedAuthor = JSON.parse(localStorage.getItem("authorData"));
   var display = "<strong>Name: </strong> " + savedAuthor.author + " " + "<br><strong>Title: </strong> " + savedAuthor.description
-  document.getElementById("authorSaved").innerHTML = display;
-  authorSaveBtn.addEventListener("click", function () {
-    var data = {
-      author: authorObjectData.name,
-      description: authorObjectData.title,
-  
-    };
-    localStorage.setItem("authorData", JSON.stringify(data));
-    renderSavedAuthor();
-  });
+  document.getElementById("authorSaved").innerHTML = display;;
 }
 
 function renderSavedWord() {
@@ -174,60 +188,37 @@ function renderSavedWord() {
   console.log(savedWord)
   var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " + savedWord.partOfSpeech + " " + "<br><strong>Definition: </strong> " + savedWord.definition;
   document.getElementById("wordSaved").innerHTML = display;
-  wordSaveBtn.addEventListener("click", function () {
-    var data = {
-      partOfSpeech: wordObjectData.partOfSpeech,
-      definition: wordObjectData.definition,
-      word: wordObjectData.word
-    };
-    localStorage.setItem("wordObjectData", JSON.stringify(data));
-    renderSavedWord();
-  });
 }
+
+quoteSaveBtn.addEventListener("click", function () {
+  var data = {
+    author: quoteObjectData.author,
+    quoteText: quoteObjectData.quoteText,
+  };
+  localStorage.setItem("quoteData", JSON.stringify(data));
+  renderSavedQuote();
+});
+
+authorSaveBtn.addEventListener("click", function () {
+  var data = {
+    author: authorObjectData.name,
+    description: authorObjectData.title,
+
+  };
+  localStorage.setItem("authorData", JSON.stringify(data));
+  renderSavedAuthor();
+});
+
+wordSaveBtn.addEventListener("click", function () {
+  var data = {
+    partOfSpeech: wordObjectData.partOfSpeech,
+    definition: wordObjectData.definition,
+    word: wordObjectData.word
+  };
+  localStorage.setItem("wordObjectData", JSON.stringify(data));
+  renderSavedWord();
+});
 
 renderSavedWord();
 renderSavedQuote();
 renderSavedAuthor();
-
-// quoteSaveBtn.addEventListener("click", function () {
-//   var data = {
-//     author: quoteObjectData.author,
-//     quoteText: quoteObjectData.quoteText,
-//   };
-//   localStorage.setItem("quoteData", JSON.stringify(data));
-//   renderSavedQuote();
-// });
-
-// authorSaveBtn.addEventListener("click", function () {
-//   var data = {
-//     author: authorObjectData.name,
-//     description: authorObjectData.title,
-
-//   };
-//   localStorage.setItem("authorData", JSON.stringify(data));
-//   renderSavedAuthor();
-// });
-
-// wordSaveBtn.addEventListener("click", function () {
-//   var data = {
-//     partOfSpeech: wordObjectData.partOfSpeech,
-//     definition: wordObjectData.definition,
-//     word: wordObjectData.word
-//   };
-//   localStorage.setItem("wordObjectData", JSON.stringify(data));
-//   renderSavedWord();
-// });
-
-// ToDo[0]:
-// Confirm Tuesday Night Group Session
-
-// ToDo[1]:
-// add title element
-// style with bulma
-
-// ToDo[5]: 
-// Test for MVP
-
-// ToDo[6]:
-// Prepare for presentation
-// Check all submission criteria is complete and organized
