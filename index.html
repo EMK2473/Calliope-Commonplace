@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     <title>Document</title>
     <!-- <link rel="stylesheet" href="styles/debug.css"> -->
@@ -15,127 +16,125 @@
       </style>
       </head>
   <body>
-    <div class="notification">
-      <div class="column">
-        <p>Pick a category and click submit for a random quote.</p>
-        <br />
-        <label for="categorySelect">Select a Category:</label>
-        <select id="categorySelect" name="categorySelect">
-          <option value="age">age</option>
-          <option value="alone">alone</option>
-          <option value="amazing">amazing</option>
-          <option value="anger">anger</option>
-          <option value="architecture">architecture</option>
-          <option value="art">art</option>
-          <option value="attitude">attitude</option>
-          <option value="beauty">beauty</option>
-          <option value="best">best</option>
-          <option value="birthday">birthday</option>
-          <option value="business">business</option>
-          <option value="car">car</option>
-          <option value="change">change</option>
-          <option value="communications">communications</option>
-          <option value="computers">computers</option>
-          <option value="cool">cool</option>
-          <option value="courage">courage</option>
-          <option value="dad">dad</option>
-          <option value="dating">dating</option>
-          <option value="death">death</option>
-          <option value="design">design</option>
-          <option value="dreams">dreams</option>
-          <option value="education">education</option>
-          <option value="environmental">environmental</option>
-          <option value="equality">equality</option>
-          <option value="experience">experience</option>
-          <option value="failure">failure</option>
-          <option value="faith">faith</option>
-          <option value="family">family</option>
-          <option value="famous">famous</option>
-          <option value="fear">fear</option>
-          <option value="fitness">fitness</option>
-          <option value="food">food</option>
-          <option value="forgiveness">forgiveness</option>
-          <option value="freedom">freedom</option>
-          <option value="friendship">friendship</option>
-          <option value="funny">funny</option>
-          <option value="future">future</option>
-          <option value="god">god</option>
-          <option value="good">good</option>
-          <option value="government">government</option>
-          <option value="graduation">graduation</option>
-          <option value="great">great</option>
-          <option value="happiness">happiness</option>
-          <option value="health">health</option>
-          <option value="history">history</option>
-          <option value="home">home</option>
-          <option value="hope">hope</option>
-          <option value="humor">humor</option>
-          <option value="imagination">imagination</option>
-          <option value="inspirational">inspirational</option>
-          <option value="intelligence">intelligence</option>
-          <option value="jealousy">jealousy</option>
-          <option value="knowledge">knowledge</option>
-          <option value="leadership">leadership</option>
-          <option value="learning">learning</option>
-          <option value="legal">legal</option>
-          <option value="life">life</option>
-          <option value="love">love</option>
-          <option value="marriage">marriage</option>
-          <option value="medical">medical</option>
-          <option value="men">men</option>
-          <option value="mom">mom</option>
-          <option value="money">money</option>
-          <option value="morning">morning</option>
-          <option value="movies">movies</option>
-          <option value="success">success</option>
-        </select>
-        <button id="quoteCategory" type="submit" class="button is-info">Submit</button>
-        <button id="quoteSaveBtn" class="button is-info">Save</button>
-        <div id="quoteResult"></div>
-        <br>
-        <h3>Saved Quote Information: </h3>
-        <div id="quoteSaved"></div>
+    <div class="hero-image">
+      <div class="notification">
+        <div class="column">
+          <p>Pick a category and click submit for a random quote.</p>
+          <label for="categorySelect">Select a Category:</label>
+          <select id="categorySelect" name="categorySelect">
+            <option value="age">age</option>
+            <option value="alone">alone</option>
+            <option value="amazing">amazing</option>
+            <option value="anger">anger</option>
+            <option value="architecture">architecture</option>
+            <option value="art">art</option>
+            <option value="attitude">attitude</option>
+            <option value="beauty">beauty</option>
+            <option value="best">best</option>
+            <option value="birthday">birthday</option>
+            <option value="business">business</option>
+            <option value="car">car</option>
+            <option value="change">change</option>
+            <option value="communications">communications</option>
+            <option value="computers">computers</option>
+            <option value="cool">cool</option>
+            <option value="courage">courage</option>
+            <option value="dad">dad</option>
+            <option value="dating">dating</option>
+            <option value="death">death</option>
+            <option value="design">design</option>
+            <option value="dreams">dreams</option>
+            <option value="education">education</option>
+            <option value="environmental">environmental</option>
+            <option value="equality">equality</option>
+            <option value="experience">experience</option>
+            <option value="failure">failure</option>
+            <option value="faith">faith</option>
+            <option value="family">family</option>
+            <option value="famous">famous</option>
+            <option value="fear">fear</option>
+            <option value="fitness">fitness</option>
+            <option value="food">food</option>
+            <option value="forgiveness">forgiveness</option>
+            <option value="freedom">freedom</option>
+            <option value="friendship">friendship</option>
+            <option value="funny">funny</option>
+            <option value="future">future</option>
+            <option value="god">god</option>
+            <option value="good">good</option>
+            <option value="government">government</option>
+            <option value="graduation">graduation</option>
+            <option value="great">great</option>
+            <option value="happiness">happiness</option>
+            <option value="health">health</option> 
+            <option value="history">history</option>
+            <option value="home">home</option>
+            <option value="hope">hope</option>
+            <option value="humor">humor</option>
+            <option value="imagination">imagination</option>
+            <option value="inspirational">inspirational</option>
+            <option value="intelligence">intelligence</option>
+            <option value="jealousy">jealousy</option>
+            <option value="knowledge">knowledge</option>
+            <option value="leadership">leadership</option>
+            <option value="learning">learning</option>
+            <option value="legal">legal</option>
+            <option value="life">life</option>
+            <option value="love">love</option>
+            <option value="marriage">marriage</option>
+            <option value="medical">medical</option>
+            <option value="men">men</option>
+            <option value="mom">mom</option>
+            <option value="money">money</option>
+            <option value="morning">morning</option>
+            <option value="movies">movies</option>
+            <option value="success">success</option>
+          </select>
+          <button id="quoteCategory" type="submit" class="button is-info">Submit</button>
+          <button id="quoteSaveBtn" class="button is-info">Save</button>
+          <div id="quoteResult"></div>
+          <h3>Saved Quote Information: </h3>
+          <div id="quoteSaved"></div>
+        </div>
       </div>
-    </div>
-    <br />
-    <div class="notification">
-      <div class="column">
-        <p>You can look up the author of the quote, too!</p>
-        
-        <br />
-        <form id="authorForm">
-          <label for="authorText">Look up the author:</label>
-          <input type="text" id="authorText" name="inputText" />
-          <input type="submit" value="Submit" class="button is-info" />
-          <button id="authorSaveBtn" class="button is-info">Save</button>
-        </form>
-        <div id="authorResult"></div>
-        <br>
-        <h3>Saved Author Information: </h3>
-        <div id="authorSaved"></div>
-        <br />
+      <br />
+      <div class="notification">
+        <div class="column">
+          <p>You can look up the author of the quote, too!</p>
+          <br />
+          <form id="authorForm">
+            <label for="authorText">Look up the author:</label>
+            <input type="text" id="authorText" name="inputText" />
+            <input type="submit" value="Submit" class="button is-info" />
+            <button id="authorSaveBtn" class="button is-info">Save</button>
+          </form>
+          <div id="authorResult"></div>
+          <br>
+          <h3>Saved Author Information: </h3>
+          <div id="authorSaved"></div>
+          <br />
+        </div>
       </div>
-    </div>
-    
-    <div class="notification">
-      <div class="column">
-        <p>Use the Dictionary if you want to look up a word.</p>
-        <br />
-        <div id="wordCategory"></div>
-        <form id="wordForm">
-          <label for="inputText">Look up a word:</label>
-          <input type="text" id="wordText" name="inputText" />
-          <input type="submit" value="Submit" class="button is-info"/>
-          <button id="wordSaveBtn" class="button is-info">Save</button>
-        </form>
-        <div id="wordResult"></div>
-        <br>
-        <h3>Saved Word Information: </h3>
-        <div id="wordSaved"></div>
-        <br /> 
+      <div class="notification">
+        <div class="column">
+          <p>Use the Dictionary if you want to look up a word.</p>
+          <br />
+          <div id="wordCategory"></div>
+          <form id="wordForm">
+            <label for="inputText">Look up a word:</label>
+            <input type="text" id="wordText" name="inputText" />
+            <input type="submit" value="Submit" class="button is-info"/>
+            <button id="wordSaveBtn" class="button is-info">Save</button>
+          </form>
+          <div id="wordResult"></div>
+          <br>
+          <h3>Saved Word Information: </h3>
+          <div id="wordSaved"></div>
+          <br /> 
+        </div>
       </div>
+      
+      <script src="./assets/js/script.js"></script>
     </div>
-    
-    <script src="./assets/js/script.js"></script>
   </body>
 </html>

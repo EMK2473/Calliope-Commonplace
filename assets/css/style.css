@@ -1,3 +1,23 @@
+:root {
+  --Blue: #0e3f7b;
+
+}
+.hero-image {
+  background-image: url("/assets/images/Home-screen.jpg");
+  background-color: #b72424;
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+P {
+  font-size: larger;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: var(--Blue);
+}
+
 /* 
 :root {
 
