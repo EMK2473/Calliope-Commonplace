@@ -98,37 +98,43 @@
       </div>
     </div>
     <br />
-
-    <p>You can look up the author of the quote, too!</p>
+    <div class="notification">
+      <div class="column">
+        <p>You can look up the author of the quote, too!</p>
+        
+        <br />
+        <form id="authorForm">
+          <label for="authorText">Look up the author:</label>
+          <input type="text" id="authorText" name="inputText" />
+          <input type="submit" value="Submit" class="button is-info" />
+          <button id="authorSaveBtn" class="button is-info">Save</button>
+        </form>
+        <div id="authorResult"></div>
+        <br>
+        <h3>Saved Author Information: </h3>
+        <div id="authorSaved"></div>
+        <br />
+      </div>
+    </div>
     
-    <br />
-    <form id="authorForm">
-      <label for="authorText">Look up the author:</label>
-      <input type="text" id="authorText" name="inputText" />
-      <input type="submit" value="Submit" class="button is-info" />
-      <button id="authorSaveBtn" class="button is-info">Save</button>
-    </form>
-    <div id="authorResult"></div>
-    <br>
-    <h3>Saved Author Information: </h3>
-    <div id="authorSaved"></div>
-    <br />
-
-    <p>Use the Dictionary if you want to look up a word.</p>
-
-    <br />
-    <div id="wordCategory"></div>
-    <form id="wordForm">
-      <label for="inputText">Look up a word:</label>
-      <input type="text" id="wordText" name="inputText" />
-      <input type="submit" value="Submit" class="button is-info"/>
-      <button id="wordSaveBtn" class="button is-info">Save</button>
-    </form>
-    <div id="wordResult"></div>
-    <br>
-    <h3>Saved Word Information: </h3>
-    <div id="wordSaved"></div>
-    <br /> 
+    <div class="notification">
+      <div class="column">
+        <p>Use the Dictionary if you want to look up a word.</p>
+        <br />
+        <div id="wordCategory"></div>
+        <form id="wordForm">
+          <label for="inputText">Look up a word:</label>
+          <input type="text" id="wordText" name="inputText" />
+          <input type="submit" value="Submit" class="button is-info"/>
+          <button id="wordSaveBtn" class="button is-info">Save</button>
+        </form>
+        <div id="wordResult"></div>
+        <br>
+        <h3>Saved Word Information: </h3>
+        <div id="wordSaved"></div>
+        <br /> 
+      </div>
+    </div>
     
     <script src="./assets/js/script.js"></script>
   </body>
