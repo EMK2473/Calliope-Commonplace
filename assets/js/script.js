@@ -1,7 +1,6 @@
 const quoteObjectData = {};
 const wordObjectData = {};
 const authorObjectData = {};
-console.log(wordObjectData)
 let apiKey = "CqAY/Y5zxlIt8MM1Ia80ng==lzBAvIdejkytitBw";
 let authorSaveBtn = document.getElementById("authorSaveBtn");
 let quoteSaveBtn = document.getElementById("quoteSaveBtn");
@@ -9,37 +8,6 @@ let wordSaveBtn = document.getElementById("wordSaveBtn");
 let wordCategoryButton = document.getElementById("wordForm");
 let quoteBtn = document.getElementById("quoteCategory");
 let submitAuthorButton = document.getElementById("authorForm");
-
-// ToDo[0]:
-// Confirm Monday Night Group Session, and/or Tuesday Night Group Session
-
-// ToDo[1]:
-// change event listeners: submit to click, or vice versa 
-// add prevent default
-// check displayWord conditional considering forEach array method
-
-// ToDo[2]:
-// consider putting render functions inside each event listener/ displayQuote functions
-// if localStorage = null, then render
-// else render upon save button
-
-// ToDo[3]:
-// resolve tailwind install issue
-// decide on creating render container in JavaScript or HTML
-// If JavaScript, then createElement, append, appendChild methods
-// If !JavaScript, then create render container element in HTML
-
-// ToDo[4]:
-// consider adding wordObjectData? Is it needed?
-
-// ToDo[5]: 
-// Test for MVP
-
-// ToDo[6]:
-// Prepare for presentation
-// Check all submission criteria is complete and organized
-
-
 
 quoteBtn.addEventListener("click", function () {
   let categorySelect = document.getElementById("categorySelect");
@@ -107,13 +75,11 @@ submitAuthorButton.addEventListener("submit", function (event) {
     })
     .then((result) => {
       if (result.length > 0) {
-        console.log(result[0]);
         let authorData = result[0];
         displayAuthor(authorData);
         authorObjectData.name = authorData.name;
         authorObjectData.title = authorData.title;
       } else {
-        console.log("Author not found");
         authorResult.textContent =
           "Author not found. Double check your spelling.";
       }
@@ -160,7 +126,6 @@ wordCategoryButton.addEventListener("submit", function (event) {
           displayWord(wordObjectData);
         });
       } else {
-        console.log("Word not found");
         wordResult.textContent = "Check your spelling.";
       }
     })
@@ -185,7 +150,6 @@ function renderSavedAuthor() {
 
 function renderSavedWord() {
   var savedWord = JSON.parse(localStorage.getItem("wordObjectData"));
-  console.log(savedWord)
   var display = "<strong>Word: </strong> " + savedWord.word + "<br><strong>Part of Speech: </strong> " + savedWord.partOfSpeech + " " + "<br><strong>Definition: </strong> " + savedWord.definition;
   document.getElementById("wordSaved").innerHTML = display;
 }
@@ -222,3 +186,18 @@ wordSaveBtn.addEventListener("click", function () {
 renderSavedWord();
 renderSavedQuote();
 renderSavedAuthor();
+
+// ToDo[0]:
+// Confirm Tuesday Night Group Session
+
+// ToDo[1]:
+// Finish styling with Bulma
+
+// ToDo[2]: 
+// Test for MVP
+
+// ToDo[3]:
+// Check all submission criteria is complete and organized
+
+// ToDo[4]:
+// Prepare for presentation

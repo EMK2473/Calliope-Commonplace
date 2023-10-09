@@ -18,9 +18,46 @@
   <body>
    <header class="notification">
       <div class="row align-items center">
-      <p><strong>Welcome to Commonplace</strong></p>
+      <p><strong>Welcome to Calliope's Commonplace</strong></p>
       </div>
     <div class="hero-image">
+      <!-- This starts the YouTube Player- I added just a LIL Bulma to it -->
+      <!-- When working, change autoplay: 0 to turn off the song with every change to code -->
+      <div class="notification column is-centered align-items center p-6">
+        <div class="column is-half" id="player" class="notification row"></div>
+      
+        <script>
+          var tag = document.createElement('script');
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          var player;
+          function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+              height: '390',
+              width: '640',
+              videoId: 'qAhzHHmNzL8',
+              playerVars: {
+                'playsinline': 1,
+                'autoplay': 1,
+                'loop': 1, 
+                'playlist': 'qAhzHHmNzL8'
+              },
+              events: {
+                'onStateChange': onPlayerStateChange
+              }
+            });
+          }
+          function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+              // Video has ended; it will automatically loop due to the 'loop' and 'playlist' settings
+            }
+          }
+          function stopVideo() {
+            player.stopVideo();
+          }
+        </script>
+      </div>
       <div class="notification">
         <div class="column">
           <p>Pick a category and click submit for a random quote.</p>
@@ -137,7 +174,6 @@
           <br /> 
         </div>
       </div>
-      
       <script src="./assets/js/script.js"></script>
     </div>
   </body>
