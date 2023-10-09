@@ -214,7 +214,7 @@ wordSaveBtn.addEventListener("click", function () {
     definition: wordObjectData.definition,
     word: wordObjectData.word
   };
-  localStorage.setItem("wordData", JSON.stringify(data));
+  localStorage.setItem("wordObjectData", JSON.stringify(data));
   renderSavedWord();
 });
 
