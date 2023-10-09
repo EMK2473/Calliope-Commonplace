@@ -125,12 +125,11 @@ wordCategoryButton.addEventListener("submit", function (event) {
         data.forEach((wordObjectData) => {
           displayWord(wordObjectData);
         });
-      } else {
-        wordResult.textContent = "Check your spelling.";
       }
     })
     .catch((error) => {
       console.error("Error:", error);
+      wordResult.textContent = "Check your spelling.";
     });
 });
 
