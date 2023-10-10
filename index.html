@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <title>Document</title>
     <!-- <link rel="stylesheet" href="styles/debug.css"> -->
     <style>
@@ -13,41 +16,41 @@
         justify-content: center;
         align-items: center;
       }
-      </style>
-      </head>
+    </style>
+  </head>
   <body>
-      <div class="hero-image is-success is-fullheight">
-        <header class="notification">
-           <div class="align-items center">
-           <p><strong>Welcome to Calliope's Commonplace</strong></p>
-           </div>
-        </header>
+    <div class="hero-image is-success is-fullheight">
+      <header class="notification">
+        <div class="align-items center">
+          <p><strong>Welcome to Calliope's Commonplace</strong></p>
+        </div>
+      </header>
       <!-- This starts the YouTube Player- I added just a LIL Bulma to it -->
       <!-- When working, change autoplay: 0 to turn off the song with every change to code -->
-      <br>
+      <br />
       <div class="notification column is-centered align-items center p-6">
         <div class="column is-half" id="player" class="notification row"></div>
-      
+
         <script>
-          var tag = document.createElement('script');
+          var tag = document.createElement("script");
           tag.src = "https://www.youtube.com/iframe_api";
-          var firstScriptTag = document.getElementsByTagName('script')[0];
+          var firstScriptTag = document.getElementsByTagName("script")[0];
           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
           var player;
           function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-              height: '390',
-              width: '640',
-              videoId: 'qAhzHHmNzL8',
+            player = new YT.Player("player", {
+              height: "390",
+              width: "640",
+              videoId: "qAhzHHmNzL8",
               playerVars: {
-                'playsinline': 1,
-                'autoplay': 1,
-                'loop': 1, 
-                'playlist': 'qAhzHHmNzL8'
+                playsinline: 1,
+                autoplay: 1,
+                loop: 1,
+                playlist: "qAhzHHmNzL8",
               },
               events: {
-                'onStateChange': onPlayerStateChange
-              }
+                onStateChange: onPlayerStateChange,
+              },
             });
           }
           function onPlayerStateChange(event) {
@@ -63,7 +66,7 @@
       <div class="notification">
         <div class="column">
           <p>Pick a category and click submit for a random quote.</p>
-          <br>
+          <br />
           <label for="categorySelect">Select a Category:</label>
           <select id="categorySelect" name="categorySelect">
             <option value="age">age</option>
@@ -110,7 +113,7 @@
             <option value="graduation">graduation</option>
             <option value="great">great</option>
             <option value="happiness">happiness</option>
-            <option value="health">health</option> 
+            <option value="health">health</option>
             <option value="history">history</option>
             <option value="home">home</option>
             <option value="hope">hope</option>
@@ -134,7 +137,9 @@
             <option value="movies">movies</option>
             <option value="success">success</option>
           </select>
-          <button id="quoteCategory" type="submit" class="button is-info">Submit</button>
+          <button id="quoteCategory" type="submit" class="button is-info">
+            Submit
+          </button>
           <button id="quoteSaveBtn" class="button is-info">Save</button>
           <div id="quoteResult"></div>
           <h3><strong>Saved Quote Information: </strong></h3>
@@ -149,11 +154,16 @@
           <form id="authorForm">
             <label for="authorText">Look up the author:</label>
             <input type="text" id="authorText" name="inputText" />
-            <input id="authorSubmitBtn" type="submit" value="Submit" class="button is-info" />
+            <input
+              id="authorSubmitBtn"
+              type="submit"
+              value="Submit"
+              class="button is-info"
+            />
             <button id="authorSaveBtn" class="button is-info">Save</button>
           </form>
           <div id="authorResult"></div>
-          <br>
+          <br />
           <h3><strong>Saved Author Information: </strong></h3>
           <div id="authorSaved"></div>
           <br />
@@ -167,18 +177,23 @@
           <form id="wordForm">
             <label for="inputText">Look up a word:</label>
             <input type="text" id="wordText" name="inputText" />
-            <input id="wordSubmitBtn" type="submit" value="Submit" class="button is-info"/>
+            <input
+              id="wordSubmitBtn"
+              type="submit"
+              value="Submit"
+              class="button is-info"
+            />
             <button id="wordSaveBtn" class="button is-info">Save</button>
           </form>
           <div id="wordResult"></div>
-          <br>
+          <br />
           <h3><strong>Saved Word Information: </strong></h3>
           <div id="wordSaved"></div>
-          <br /> 
+          <br />
         </div>
       </div>
       <script src=".//assets/js/script.js"></script>
-      <br>
+      <br />
     </div>
   </body>
 </html>
