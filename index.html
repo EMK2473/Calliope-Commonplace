@@ -9,7 +9,6 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="styles/debug.css"> -->
     <style>
       .center {
         display: flex;
@@ -21,16 +20,13 @@
   <body>
     <div class="hero-image is-success is-fullheight">
       <header class="notification">
-        <div class="align-items center">
-          <p><strong>Welcome to Calliope's Commonplace</strong></p>
+        <div>
+          <p><strong class="is-size-1">Welcome to Calliope's Commonplace</strong></p>
         </div>
       </header>
-      <!-- This starts the YouTube Player- I added just a LIL Bulma to it -->
-      <!-- When working, change autoplay: 0 to turn off the song with every change to code -->
       <br />
       <div class="notification column is-centered align-items center p-6">
-        <div class="column is-half" id="player" class="notification row"></div>
-
+        <div class="column is-half" id="player" class="notification"></div>
         <script>
           var tag = document.createElement("script");
           tag.src = "https://www.youtube.com/iframe_api";
@@ -65,7 +61,7 @@
       </div>
       <div class="notification">
         <div class="column">
-          <p>Pick a category and click submit for a random quote.</p>
+          <p class="is-size-4">Pick a category and click submit for a random quote.</p>
           <br />
           <label for="categorySelect">Select a Category:</label>
           <select id="categorySelect" name="categorySelect">
@@ -137,19 +133,20 @@
             <option value="movies">movies</option>
             <option value="success">success</option>
           </select>
-          <button id="quoteCategory" type="submit" class="button is-info">
+          <button id="quoteCategory" type="submit" class="button is-info is-small">
             Submit
           </button>
-          <button id="quoteSaveBtn" class="button is-info">Save</button>
+          <button id="quoteSaveBtn" class="button is-info is-small">Save</button>
           <div id="quoteResult"></div>
-          <h3><strong>Saved Quote Information: </strong></h3>
+          <br>
+          <h3><strong class="is-underlined">Saved Quote Information: </strong></h3>
           <div id="quoteSaved"></div>
         </div>
       </div>
       <br />
-      <div class="notification">
+      <div class="notification has-shadow 0 5px 1 5px 2 15px rgb(0, 0, 0)">
         <div class="column">
-          <p>You can look up the author of the quote, too!</p>
+          <p class="is-size-4">You can look up the author of the quote, too!</p>
           <br />
           <form id="authorForm">
             <label for="authorText">Look up the author:</label>
@@ -158,20 +155,20 @@
               id="authorSubmitBtn"
               type="submit"
               value="Submit"
-              class="button is-info"
+              class="button is-info is-small"
             />
-            <button id="authorSaveBtn" class="button is-info">Save</button>
+            <button id="authorSaveBtn" class="button is-info is-small">Save</button>
           </form>
           <div id="authorResult"></div>
           <br />
-          <h3><strong>Saved Author Information: </strong></h3>
+          <h3><strong class="is-underlined">Saved Author Information: </strong></h3>
           <div id="authorSaved"></div>
           <br />
         </div>
       </div>
-      <div class="notification">
+      <div class="notification ">
         <div class="column">
-          <p>A Dictionary if you want to look up a word.</p>
+          <p class="is-size-4">A Dictionary if you want to look up a word.</p>
           <br />
           <div id="wordCategory"></div>
           <form id="wordForm">
@@ -181,13 +178,13 @@
               id="wordSubmitBtn"
               type="submit"
               value="Submit"
-              class="button is-info"
+              class="button is-info is-small"
             />
-            <button id="wordSaveBtn" class="button is-info">Save</button>
+            <button id="wordSaveBtn" class="button is-info is-small">Save</button>
           </form>
           <div id="wordResult"></div>
           <br />
-          <h3><strong>Saved Word Information: </strong></h3>
+          <h3><strong class="is-underlined">Saved Word Information: </strong></h3>
           <div id="wordSaved"></div>
           <br />
         </div>

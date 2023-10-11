@@ -81,7 +81,7 @@ submitAuthorButton.addEventListener("submit", function (event) {
         authorObjectData.title = authorData.title;
       } else {
         authorResult.textContent =
-          "Author not found. Double check your spelling.";
+          "Author not found.";
       }
     })
     .catch((error) => {
@@ -186,17 +186,6 @@ renderSavedWord();
 renderSavedQuote();
 renderSavedAuthor();
 
-// ToDo[0]:
-// Confirm Tuesday Night Group Session
-
-// ToDo[1]:
-// Finish styling with Bulma
-
-// ToDo[2]: 
-// Test for MVP
 
 // ToDo[3]:
 // Check all submission criteria is complete and organized
-
-// ToDo[4]:
-// Prepare for presentation
