@@ -27,5 +27,5 @@ Bulma CSS framework
 
 ## Deployed Application
 <img src="/assets/images/Deployed App.png" alt="Image of the application">
-GitHub repo: https://github.com/EMK2473/calliope-harp
-Deployed: https://emk2473.github.io/calliope-harp/
+GitHub repo: https://github.com/EMK2473/calliope-commonplace/
+Deployed: https://emk2473.github.io/calliope-commonplace/
